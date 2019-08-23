@@ -37,7 +37,7 @@ flyio.interceptors.response.use(
 )
 
 const matchUri = (url, params) => {
-  url = url.replace(/\$[a-zA-Z0-9]+/, a => {
+  url = url.replace(/\$\w+/, a => {
     const key = a.slice(1)
     const val = params[key]
     delete params[key]

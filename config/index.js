@@ -3,6 +3,23 @@
 const path = require('path')
 
 module.exports = {
+  // webpack externals
+  common: {
+    externals: [{
+      node_module: 'react',
+      Global: 'React',
+      js: 'https://unpkg.com/react@16/umd/react.production.min.js'
+    },{
+      node_module: 'react-dom',
+      Global: 'ReactDOM',
+      js: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js'
+    },{
+      node_module: 'prop-types',
+      Global: 'PropTypes',
+      js: 'static/js/prop-types.min.js'
+    }],
+    includes: []
+  },
   dev: {
     mode: 'development',
     // Paths

@@ -5,12 +5,8 @@ const config = require('../config')
 const merge = require('webpack-merge')
 const path = require('path')
 const baseWebpackConfig = require('./webpack.base.conf')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
-const IncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -53,20 +49,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
-    new MiniCssExtractPlugin({
-      filename: utils.assetsPath('css/[name].css'),
-      allChunks: true
-    }),
-    // copy custom static assets
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: config.dev.assetsSubDirectory,
-        ignore: ['.*']
-      }
-    ])
   ]
 })
 
@@ -85,15 +68,6 @@ if (isNode) {
         devWebpackConfig.devServer.port = port
 
         devWebpackConfig.plugins = [...devWebpackConfig.plugins, 
-        new HtmlWebpackPlugin({
-          filename: 'index.html',
-          template: 'index.template.html',
-          inject: true
-        }),
-        new IncludeAssetsPlugin({
-          assets: [`${config.build.assetsSubDirectory}/js/vendor.dll.js`],
-          append: false
-        }),
         // Add FriendlyErrorsPlugin
         new FriendlyErrorsPlugin({
           compilationSuccessInfo: {

@@ -76,8 +76,8 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass'),
+    sass: generateLoaders('fast-sass', { indentedSyntax: true }),
+    scss: generateLoaders('fast-sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }
@@ -114,4 +114,23 @@ exports.createNotifierCallback = () => {
       icon: path.join(__dirname, 'logo.png')
     })
   }
+}
+
+exports.createExternals = () => {
+  const { externals } = config.common
+  const a = {
+    externals: {},
+    js: [],
+    css: []
+  }
+  externals.map(v => {
+    a.externals[v.node_module] = v.Global
+    v.js && a.js.push(v.js)
+    v.css && a.css.push(v.css)
+  })
+  return a
+}
+
+exports.resolve = dir => {
+  return path.join(__dirname, '..', dir)
 }
