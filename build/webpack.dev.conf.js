@@ -49,7 +49,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 })
 

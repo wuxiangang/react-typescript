@@ -9,14 +9,18 @@ module.exports = {
       node_module: 'react',
       Global: 'React',
       js: 'https://unpkg.com/react@16/umd/react.production.min.js'
-    },{
+    }, {
       node_module: 'react-dom',
       Global: 'ReactDOM',
       js: 'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js'
-    },{
+    }, {
       node_module: 'prop-types',
       Global: 'PropTypes',
       js: 'static/js/prop-types.min.js'
+    }, {
+      node_module: 'react-router-dom',
+      Global: 'ReactRouterDOM',
+      js: 'https://cdn.bootcss.com/react-router-dom/5.0.1/react-router-dom.min.js'
     }],
     includes: []
   },

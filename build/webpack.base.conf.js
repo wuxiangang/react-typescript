@@ -8,7 +8,7 @@ module.exports = {
   entry: path.resolve(__dirname, '../src/index.js'),
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath(process.env.NODE_ENV === 'production' ? 
+    filename: utils.assetsPath(process.env.NODE_ENV === 'production' ?
     'js/[name].[chunkhash].js' : 'js/[name].js'
     ),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')

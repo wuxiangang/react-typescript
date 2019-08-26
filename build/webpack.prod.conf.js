@@ -6,7 +6,8 @@ const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin')
 
 const webpackConfig = merge(baseWebpackConfig, {
   mode: config.build.mode,
@@ -31,6 +32,19 @@ const webpackConfig = merge(baseWebpackConfig, {
         sourceMap: config.build.productionSourceMap,
         parallel: true
       })
+      // new ParallelUglifyPlugin({
+      //   uglifyJS: {
+      //     output: {
+      //       beautify: false,
+      //       comments: false
+      //     },
+      //     compress: {
+      //       drop_console: true,
+      //       collapse_vars: false,
+      //       reduce_vars: false
+      //     }
+      //   }
+      // })
     ],
     sideEffects: false,
     namedChunks: true,
