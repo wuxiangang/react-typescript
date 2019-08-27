@@ -48,7 +48,7 @@ module.exports = [
     }
   ]),
   new MiniCssExtractPlugin({
-    filename: utils.assetsPath('css/[name].[chunkhash].css'),
+    filename: utils.assetsPath('css/[name].css'),
     allChunks: true
   })
 ]

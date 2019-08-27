@@ -16,7 +16,7 @@ module.exports = {
     }, {
       node_module: 'prop-types',
       Global: 'PropTypes',
-      js: 'static/js/prop-types.min.js'
+      js: '/static/js/prop-types.min.js'
     }, {
       node_module: 'react-router-dom',
       Global: 'ReactRouterDOM',
@@ -67,7 +67,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/',
     assetsDll: path.resolve(__dirname, '../static/js'),
 
     /**

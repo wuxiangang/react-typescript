@@ -1,14 +1,27 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import Loadable from 'react-loadable'
 import * as Action from '../store/actions'
-import Weather from '../containers/weather'
-import Todos from '../containers/todos'
 
-const BasicRoute = () => (
-  <Switch>
-    <Route exact path='/' component={Weather} fetch={Action.getWeather} />
-    <Route exact path='/todos' component={Todos} />
-  </Switch>
-)
+const ssr = true
 
-export default BasicRoute
+const loadable = filename => Loadable({
+  loader: () => import(`@/containers/${filename}`),
+  loading: () => ('')
+})
+
+const setComponent = filename => {
+  return ssr ? require(`../containers/${filename}`).default
+    : loadable(filename)
+}
+
+const routers = [{
+  path: '/',
+  exact: true,
+  fetch: Action.getWeather,
+  component: setComponent('weather')
+}, {
+  path: '/todos/:id',
+  // exact: true,
+  component: setComponent('todos')
+}]
+
+export default routers

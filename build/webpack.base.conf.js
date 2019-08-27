@@ -7,11 +7,11 @@ const plugins = require('./webpack.plugins.conf')
 module.exports = {
   entry: path.resolve(__dirname, '../src/index.js'),
   output: {
+    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath,
     path: config.build.assetsRoot,
-    filename: utils.assetsPath(process.env.NODE_ENV === 'production' ?
-    'js/[name].[chunkhash].js' : 'js/[name].js'
-    ),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath('js/[name].js'),
+    chunkFilename: utils.assetsPath('js/[id].js')
   },
   resolve: {
     alias: {

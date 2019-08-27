@@ -67,16 +67,16 @@ if (isNode) {
         // add port to devServer config
         devWebpackConfig.devServer.port = port
 
-        devWebpackConfig.plugins = [...devWebpackConfig.plugins, 
+        devWebpackConfig.plugins = [...devWebpackConfig.plugins,
         // Add FriendlyErrorsPlugin
-        new FriendlyErrorsPlugin({
-          compilationSuccessInfo: {
-            messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
-          },
-          onErrors: config.dev.notifyOnErrors
-          ? utils.createNotifierCallback()
-          : undefined
-        })]
+          new FriendlyErrorsPlugin({
+            compilationSuccessInfo: {
+              messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
+            },
+            onErrors: config.dev.notifyOnErrors
+              ? utils.createNotifierCallback()
+              : undefined
+          })]
 
         resolve(devWebpackConfig)
       }
