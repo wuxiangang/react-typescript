@@ -1,5 +1,4 @@
 import Loadable from 'react-loadable'
-import * as Action from '../store/actions'
 
 const ssr = true
 
@@ -16,7 +15,7 @@ const setComponent = filename => {
 const routers = [{
   path: '/weather',
   // exact: true,
-  fetch: Action.getWeather,
+  // fetch: Action.getWeather,
   component: setComponent('weather')
 }, {
   path: '/todos/:id',

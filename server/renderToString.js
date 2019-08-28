@@ -4,10 +4,9 @@ import { renderToString } from 'react-dom/server'
 import { matchPath, StaticRouter } from 'react-router-dom'
 import routes from '../src/route'
 import App from '../src/app'
-import initStore from '../src/store'
+import store from '../src/store'
 import env from './env'
 
-const store = initStore()
 const matchRoute = async ctx => {
   const activeRoute = routes.find(route => matchPath(ctx.req.url, route)) || { props: {} }
   const data = await (!!activeRoute.fetch ? store.dispatch(activeRoute.fetch()) : Promise.resolve(null))

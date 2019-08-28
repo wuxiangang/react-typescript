@@ -3,9 +3,11 @@ import APIS from '../json/api.json'
 
 const fetch = {}
 for (let api of Object.keys(APIS)) {
-  fetch[api] = params => http({
-    ...params,
-    api
+  const current = APIS[api]
+  fetch[api] = (params, configs) => http({
+    ...current,
+    params,
+    configs
   })
 }
 

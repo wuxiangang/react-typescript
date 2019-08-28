@@ -6,9 +6,10 @@ export default class TodosList extends Component {
   }
 
   render () {
+    console.log(this)
     return (
       <div>
-        <button onClick={ this.props.addTodo }>添加todos</button>
+        <button onClick={ this.props.dispatch.bind(this, { type: 'ADD_TODO' }) }>添加todos</button>
         <ul>
           {
             this.props.todos.map((v, i) => {

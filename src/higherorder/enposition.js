@@ -7,8 +7,9 @@ export default ComposedComponent => class Enhance extends Component {
   }
 
   static getDerivedStateFromProps (nextProps, prevState) {
-    const { getWeather, weather } = nextProps
-    if (!weather.city) getWeather()
+    const { weather } = nextProps
+    nextProps.dispatch({ type: 'GET_POSITION' })
+    // if (!weather.city) getWeather()
   }
 
   render () {

@@ -1,9 +1,16 @@
 import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
+import Saga from './saga'
 import rootReducer from './reducers'
- 
-// Note: this API requires redux@>=3.1.0
-export default initialState => {
-  const store = createStore(rootReducer, initialState, applyMiddleware(thunk))
-  return store
-}
+
+const sagaMiddleware = createSagaMiddleware()
+
+const store = createStore(
+  rootReducer,
+  window ? window._initState_ : undefined,
+  applyMiddleware(sagaMiddleware)
+)
+
+export default store
+
+sagaMiddleware.run(Saga)
