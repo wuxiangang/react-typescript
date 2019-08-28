@@ -1,4 +1,4 @@
-import Fly from '../../assets/js/fly'
+import Ajax from '../../assets/js/api'
 
 let nextTodoId = 0
 export const addTodo = text => ({
@@ -10,7 +10,7 @@ export const addTodo = text => ({
 export const APIS = (api, params) => {
   return async dispatch => {
     try {
-      const data = await Fly({ api, params })
+      const data = await Ajax[api]({ params })
       return dispatch({
         type: `GET_${api.toUpperCase()}_SUCCESS`,
         data

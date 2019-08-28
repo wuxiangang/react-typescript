@@ -17,8 +17,8 @@ const devMiddleware = require('koa-webpack-dev-middleware')(compiler, {
 })
 
 const hotMiddleware = require('koa-webpack-hot-middleware')(compiler, {
-   log: false,
-   reload: true
+  log: false,
+  reload: true
 })
 
 // serve webpack bundle output
@@ -31,11 +31,10 @@ app.use(hotMiddleware)
 // 首页路由
 let router = new Router()
 router.get('*', async ctx => {
-	if (!/\/static\//.test(ctx.req.url)) {
-	    ctx.response.type = 'html'
-	    const html = await htmlString(ctx)
-	    ctx.response.body = html
-	}
+  if (ctx.req.url === '/favicon.ico') return
+  ctx.response.type = 'html'
+  const html = await htmlString(ctx)
+  ctx.response.body = html
 })
 app.use(router.routes())
 

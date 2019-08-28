@@ -10,7 +10,6 @@ import env from './env'
 const store = initStore()
 const matchRoute = async ctx => {
   const activeRoute = routes.find(route => matchPath(ctx.req.url, route)) || { props: {} }
-  console.log(activeRoute)
   const data = await (!!activeRoute.fetch ? store.dispatch(activeRoute.fetch()) : Promise.resolve(null))
   return data
 }
@@ -24,15 +23,15 @@ const setToString = string => {
         <script type=text/javascript src=https://unpkg.com/react@16/umd/react.production.min.js></script>
         <script type=text/javascript src=https://unpkg.com/react-dom@16/umd/react-dom.production.min.js></script>
         <script src=https://cdn.bootcss.com/react-router-dom/5.0.1/react-router-dom.min.js></script>
-        <script src=${env.webpackPath}/js/prop-types.min.js></script>
-        <link href=${env.webpackPath}/css/main.css rel=stylesheet />
+        <script src=/static/js/prop-types.min.js></script>
+        <link href=/static/css/main.css rel=stylesheet />
       </head>
       <body>
         <div class=container id=app>${string}</div>
          <script>window._initState_ = ${JSON.stringify(store.getState()).replace(/</g, '\\x3c')}</script>
-         <script type=text/javascript src=${env.webpackPath}/js/vendor.dll.js></script>
-         <script type=text/javascript src=${env.webpackPath}/js/vendor.js></script>
-         <script type=text/javascript src=${env.webpackPath}/js/main.js></script>
+         <script type=text/javascript src=/static/js/vendor.dll.js></script>
+         ${env.isProd ? '<script type=text/javascript src=/static/js/vendor.js></script>' : ''}
+         <script type=text/javascript src=/static/js/main.js></script>
       </body>
     </html>`
 }

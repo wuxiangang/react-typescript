@@ -14,8 +14,8 @@ const setComponent = filename => {
 }
 
 const routers = [{
-  path: '/',
-  exact: true,
+  path: '/weather',
+  // exact: true,
   fetch: Action.getWeather,
   component: setComponent('weather')
 }, {

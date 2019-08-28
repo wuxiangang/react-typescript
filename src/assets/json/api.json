@@ -1,0 +1,10 @@
+{
+    "weather": {
+        "url": "/weather",
+        "method": "GET"
+    },
+    "position": {
+        "method": "GET",
+        "url": "/position"
+    }
+}
