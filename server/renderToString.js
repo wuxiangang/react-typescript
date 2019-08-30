@@ -8,9 +8,9 @@ import store from '../src/store'
 import env from './env'
 
 const matchRoute = async ctx => {
-  const activeRoute = routes.find(route => matchPath(ctx.req.url, route)) || { props: {} }
-  const data = await (!!activeRoute.fetch ? store.dispatch(activeRoute.fetch()) : Promise.resolve(null))
-  return data
+  const activeRoute = routes.find(route => matchPath(ctx.req.url, route)) || {}
+  const { fetch } = activeRoute
+  return fetch ? store.run(fetch).toPromise() : Promise.resolve(null)
 }
 
 const setToString = string => {
@@ -36,10 +36,10 @@ const setToString = string => {
 }
 
 export default async ctx => {
-  const context = { data: await matchRoute(ctx) }
+  await matchRoute(ctx)
   const string = renderToString(
     <Provider store={store}>
-      <StaticRouter location={ctx.req.url} context={context}>
+      <StaticRouter location={ctx.req.url}>
         <App />
       </StaticRouter>
     </Provider>

@@ -34,6 +34,7 @@ router.get('*', async ctx => {
   if (ctx.req.url === '/favicon.ico') return
   ctx.response.type = 'html'
   const html = await htmlString(ctx)
+  console.log(html)
   ctx.response.body = html
 })
 app.use(router.routes())
@@ -42,6 +43,6 @@ app.use(router.routes())
 server.listen(8082, () => {
   const uri = 'http://localhost:8082'
   console.log('listening on *:8082')
-  opn(uri)
+  // opn(uri)
 })
 

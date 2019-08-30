@@ -10,6 +10,7 @@ app.use(require('koa-static')(path.resolve(__dirname, '../dist')))
 // 首页路由
 let router = new Router()
 router.get('*', async ctx => {
+  if (ctx.req.url === '/favicon.ico') return
   ctx.response.type = 'html'
   const html = await htmlString(ctx)
   console.log(html)

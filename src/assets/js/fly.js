@@ -7,7 +7,7 @@ flyio.config.responseType = 'json'
 
 flyio.interceptors.request.use(config => {
   // // if (config.method === 'POST') contentType = 'application/x-www-form-urlencoded'
-  // config.headers['Content-Type'] = contentType
+  config.headers['Content-Type'] = 'application/json'
   // config.headers['Session'] = 'pkfkurqfnteycjagywyfkuxikqbqrcfd'
   return config
 },

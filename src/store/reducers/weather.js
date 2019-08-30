@@ -8,6 +8,7 @@ const weather = (state = initialState, action) => {
   if (typeof action.data === 'string') action.data = JSON.parse(action.data)
   switch (action.type) {
     case 'GET_WEATHER_SUCCESS':
+      console.log(action.results)
       stateCopy.results = action.results
       break
     case 'GET_POSITION_SUCCESS':

@@ -4,12 +4,12 @@ import Saga from './saga'
 import rootReducer from './reducers'
 
 const sagaMiddleware = createSagaMiddleware()
-
 const store = createStore(
   rootReducer,
-  window ? window._initState_ : undefined,
+  typeof window !== 'undefined' ? window._initState_ : undefined,
   applyMiddleware(sagaMiddleware)
 )
+store.run = sagaMiddleware.run
 
 export default store
 

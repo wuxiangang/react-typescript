@@ -22,20 +22,23 @@ export function * getWeather (params) {
 }
 
 export function * getPosition () {
-  yield take('GET_POSITION')
   const p = yield call(API.position)
-  const city = p.data.content.address_detail.city
+  const { city } = p.data.content.address_detail
   yield put({
     type: 'GET_POSITION_SUCCESS',
     city
   })
-  // const a = yield select(state => state.weather)
   yield fork(getWeather, { city })
+}
+
+export function * position () {
+  yield take('GET_POSITION')
+  yield call(getPosition)
 }
 
 export default function * rootSaga () {
   yield all([
-    getPosition(),
+    position(),
     increase()
   ])
 }

@@ -12,10 +12,13 @@ const setComponent = filename => {
     : loadable(filename)
 }
 
+import * as saga from '../store/saga'
+
 const routers = [{
   path: '/weather',
   // exact: true,
-  // fetch: Action.getWeather,
+  type: 'GET_POSITION',
+  fetch: saga.getPosition,
   component: setComponent('weather')
 }, {
   path: '/todos/:id',

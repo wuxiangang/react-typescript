@@ -30,6 +30,7 @@ app.get('/weather', (req, res) => {
     method: 'GET',
     url: `http://api.map.baidu.com/telematics/v3/weather?location=${city}&output=json&ak=${ak}`
   }).then(data => {
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
     res.send(data.data)
   })
 })

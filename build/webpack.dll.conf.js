@@ -5,7 +5,7 @@ const config = require('../config')
 module.exports = {
 
   entry: {
-    vendor: ['redux', 'react-redux', 'flyio']
+    vendor: ['redux', 'react-redux', 'flyio', 'redux-saga']
   },
   mode  : 'production',
   output: {
