@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import TodosList from '../components/todosList'
+import Detail from '../components/detail'
 
 const mapStateToProps = state => ({ todos: state.todos })
 
-export default connect(mapStateToProps)(TodosList)
+export default connect(mapStateToProps)(Detail)
