@@ -1,9 +1,14 @@
-const initialState = {
+interface Initial {
+  results: [],
+  city: string
+}
+
+const initialState: Initial = {
   results: [],
   city: ''
 }
 
-const weather = (state = initialState, action) => {
+const weather = (state = initialState, action: any) => {
   let stateCopy = { ...state }
   if (typeof action.data === 'string') action.data = JSON.parse(action.data)
   switch (action.type) {

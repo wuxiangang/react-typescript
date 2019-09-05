@@ -1,27 +1,28 @@
 import Loadable from 'react-loadable'
 import * as saga from '../store/saga'
 
-const ssr = true
+const ssr = false
 
-const loadable = filename => Loadable({
+const loadable = (filename: string): any => Loadable({
   loader: () => import(`../${filename}`),
-  loading: () => ('')
+  loading: ():any => ('')
 })
 
-const setComponent = filename => {
+const setComponent = (filename: string): any => {
   return ssr ? require(`../${filename}`).default
     : loadable(filename)
+    
 }
 
 const routers = [{
   path: '/weather',
-  // exact: true,
+  exact: true,
   type: 'GET_POSITION',
   fetch: saga.getPosition,
   component: setComponent('containers/weather')
 }, {
   path: '/todos/:id',
-  // exact: true,
+  exact: true,
   component: setComponent('containers/todos')
 }, {
   path: '/detail',
@@ -33,6 +34,7 @@ const routers = [{
   },
   {
     path: '/detail/a2',
+    exact: true,
     component: setComponent('components/detail2')
   }]
 }]

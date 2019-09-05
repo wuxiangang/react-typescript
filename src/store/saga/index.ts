@@ -1,4 +1,4 @@
-import { put, take, select, takeEvery, all, call, fork } from 'redux-saga/effects'
+import { put, take, select, takeEvery, takeLatest, all, call, fork } from 'redux-saga/effects'
 import API from '../../assets/js/api'
 
 export function * increase () {
@@ -13,7 +13,7 @@ export function * increase () {
   }
 }
 
-export function * getWeather (params) {
+export function * getWeather (params: Object) {
   const p = yield call(API.weather, params)
   yield put({
     type: 'GET_WEATHER_SUCCESS',
@@ -33,7 +33,7 @@ export function * getPosition () {
 
 export function * position () {
   yield take('GET_POSITION')
-  yield call(getPosition)
+  yield fork(getPosition)
 }
 
 export default function * rootSaga () {

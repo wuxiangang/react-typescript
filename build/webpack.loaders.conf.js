@@ -15,6 +15,12 @@ module.exports = [
     }
   },
   {
+    test: /\.tsx?$/,
+    loader: 'ts-loader',
+    exclude: /node_modules/,
+    include: [utils.resolve('src')]
+  },
+  {
     test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
     loader: 'url-loader',
     options: {

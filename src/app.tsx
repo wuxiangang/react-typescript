@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-// import Detail from './components/detail'
-import Router from './route'
+import routes from './route'
+console.log(routes)
+interface R {
+  exact?: boolean | undefined,
+  path: string,
+  component: any
+}
 
 class BasicExample extends Component {
   render () {
     return (<div className='app-container'>
       <Switch>
         {
-          Router.map((v, i) => {
-            const r = (a, b) => <Route
+          routes.map((v, i) => {
+            const r = (a: R, b: number) => <Route
               key = { b }
               exact = { a.exact }
               path = { a.path }

@@ -5,7 +5,7 @@ const rules = require('./webpack.loaders.conf')
 const plugins = require('./webpack.plugins.conf')
 
 module.exports = {
-  entry: path.resolve(__dirname, '../src/index.js'),
+  entry: path.resolve(__dirname, '../src/index.tsx'),
   output: {
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath,
@@ -17,7 +17,7 @@ module.exports = {
     alias: {
       '@': utils.resolve('src')
     },
-    extensions: ['.js', '.jsx', '.json', '.less', '.css']
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.json']
   },
   externals: utils.createExternals().externals,
   module: {

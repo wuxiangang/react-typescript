@@ -1,18 +1,16 @@
 import flyio from 'flyio'
+import { Ajax } from '../../type/type'
 
 flyio.config.baseURL = 'http://localhost:8888/'
 // flyio.config.withCredentials = true
 flyio.config.timeout = 100000
 flyio.config.responseType = 'json'
-
+console.log(flyio)
 flyio.interceptors.request.use(config => {
   // // if (config.method === 'POST') contentType = 'application/x-www-form-urlencoded'
   config.headers['Content-Type'] = 'application/json'
   // config.headers['Session'] = 'pkfkurqfnteycjagywyfkuxikqbqrcfd'
   return config
-},
-error => {
-  return Promise.reject(error)
 })
 
 flyio.interceptors.response.use(
@@ -24,7 +22,7 @@ flyio.interceptors.response.use(
   }
 )
 
-const matchUri = (url, params) => {
+const matchUri = (url: string, params: any) => {
   url = url.replace(/\$\w+/, a => {
     const key = a.slice(1)
     const val = params[key]
@@ -34,7 +32,7 @@ const matchUri = (url, params) => {
   return url
 }
 
-export default function fetch (options) {
+export default function fetch (options: Ajax) {
   if (options.constructor !== Object) throw new Error('fetch options must be object!')
   if (!options.api && !options.url) throw new Error('fetch options have no api or url!')
 
@@ -45,10 +43,11 @@ export default function fetch (options) {
       url = matchUri(url, options.params)
     }
     const params = options.params || {}
-    flyio[method.toLowerCase()](url, params, options.configs)
-      .then(response => {
+    const m = method.toLowerCase()
+    return (flyio as any)[m](url, params, options.configs)
+      .then((response: any) => {
         resolve(response.data)
-      }, err => {
+      }, (err: any) => {
         reject(err)
       })
   })

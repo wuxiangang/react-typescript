@@ -4,9 +4,9 @@ import Saga from './saga'
 import rootReducer from './reducers'
 
 const sagaMiddleware = createSagaMiddleware()
-const store = createStore(
+const store: any = createStore(
   rootReducer,
-  typeof window !== 'undefined' ? window._initState_ : undefined,
+  typeof window !== 'undefined' ? (window as any)['_initState_'] : undefined,
   applyMiddleware(sagaMiddleware)
 )
 store.run = sagaMiddleware.run
