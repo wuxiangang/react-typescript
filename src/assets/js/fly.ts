@@ -5,7 +5,6 @@ flyio.config.baseURL = 'http://localhost:8888/'
 // flyio.config.withCredentials = true
 flyio.config.timeout = 100000
 flyio.config.responseType = 'json'
-console.log(flyio)
 flyio.interceptors.request.use(config => {
   // // if (config.method === 'POST') contentType = 'application/x-www-form-urlencoded'
   config.headers['Content-Type'] = 'application/json'
